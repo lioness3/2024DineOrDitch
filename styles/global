@@ -1,0 +1,6 @@
+import { StyleSheet } from "react-native";
+//global style sheet for consistant styling
+
+export const globalStyles = StyleSheet.create({
+    
+})
