@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { Image, Text, View } from "react-native";
+import { globalStyles} from '../../styles/global';
 import * as Location from "expo-location";
+import { MaterialIcons } from "@expo/vector-icons";
 
 export default function Index() {
   const [location, setLocation] = useState({});
   const [lat, setLat] = useState(Number);
   const [long,setLong]= useState(Number);
+  const buttonSize = 60; // defines size of yes and no buttons
 
   useEffect(() => { // runs when index component mounts
     const getPermissions = async () => {
@@ -23,6 +26,7 @@ export default function Index() {
         console.log('====================================');
         console.log("NO LOCATION PERMISSION");
         console.log('====================================');
+        
       }
 
 
@@ -31,15 +35,18 @@ export default function Index() {
    getPermissions(); //get user permission for location 
   }, []);
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-<Text>latitude: {lat}</Text>
-<Text>longitude: {long}</Text>
+    <View style={globalStyles.container}>
+      <View style={globalStyles.card}>
+        <Text style={globalStyles.headingText}>RESTAURANT NAME</Text>
+        <Text>latitude: {lat}</Text>
+        <Text>longitude: {long}</Text>
+        <View style={globalStyles.buttonContainer}>
+          <MaterialIcons name="check-circle" size={buttonSize} color={"green"}/>
+          <MaterialIcons name="next-plan" size={buttonSize} color={"red"}/>
+
+        </View>
+      </View>
+      
 
     </View>
   );
